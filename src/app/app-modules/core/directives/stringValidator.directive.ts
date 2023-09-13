@@ -56,7 +56,7 @@ export class StringValidator {
   addressValidator = /^[a-zA-Z0-9.,/\-# ]+$/;
   smsTemplateValidator = /^[a-zA-Z0-9.,$\-:;/() ]+$/;
   itemNameSearchValidator = /^[a-zA-Z0-9% ]+$/;
-  itemNameMasterValidator = /^[a-zA-Z0-9%-.[\]\/() ]+$/;
+  itemNameMasterValidator = /^[a-zA-Z0-9%\-_\s]+$/;
   answerValidator = /^[a-zA-Z0-9.,/\- ]+$/;
   usernameValidator = /^[a-zA-Z0-9]+$/;
 
