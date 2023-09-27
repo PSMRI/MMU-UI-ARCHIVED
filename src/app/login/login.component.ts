@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.userName && this.password) {
-      const saltRounds = 10; // You can adjust this based on your security requirements
+      const saltRounds = 12; // You can adjust this based on your security requirements
       bcrypt.hash(this.password, saltRounds, (err, hash) => {
         if (err) {
           // Handle the error
