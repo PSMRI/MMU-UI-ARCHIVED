@@ -83,10 +83,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.userName && this.password) {
-      const saltRounds = 12; // You can adjust this based on your security requirements
+      const saltRounds = 12; 
       bcrypt.hash(this.password, saltRounds, (err, hash) => {
         if (err) {
-          // Handle the error
+          
           console.error('Error hashing password:', err);
           this.confirmationService.alert('Error logging in. Please try again later.', 'error');
         } else {
@@ -141,11 +141,7 @@ export class LoginComponent implements OnInit {
 });
 }
 }
-//} , err => {
-  //    this.confirmationService.alert(err, 'error');
-    //});
- // }
-//}
+
 
 
 get keySize() {
@@ -195,7 +191,7 @@ encrypt(passPhrase, plainText) {
     localStorage.setItem('userName', loginDataResponse.userName);
     localStorage.setItem('username', this.userName);
     localStorage.setItem('fullName', loginDataResponse.fullName);
-    // this.saveServiceID(loginDataResponse);
+    
     const services = [];
     loginDataResponse.previlegeObj.map(item => {
       if (item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping.serviceID == '2') {
@@ -258,29 +254,5 @@ encrypt(passPhrase, plainText) {
         }
       })
   }
-
-  //  saveServiceID(obj) {
-  //   // console.log(obj,'objhere')
-  //   const privilegeObject = obj.previlegeObj;
-  //   const mmuObject = privilegeObject.filter(item => item.serviceName == 'MMU');
-  //   const tmObject = privilegeObject.filter(item => item.serviceName == 'TM');
-  //   // console.log(mmuObject,'cdv' ,tmObject)
-  //   let mmuServiceID;
-  //   let tmServiceID;
-  //   if (mmuObject.length) { mmuServiceID = this.getServiceID(mmuObject[0].roles[0]); }
-  //   if (tmObject.length) { tmServiceID = this.getServiceID(tmObject[0].roles[0]); }
-  //   console.log(mmuServiceID, tmServiceID)
-  //   localStorage.setItem('serviceIDs', JSON.stringify({
-  //     mmuServiceID,
-  //     tmServiceID
-  //   }))
-  // }
-  // getServiceID(role) {
-  //   const serviceRoleMapping = role.serviceRoleScreenMappings[0];
-  //   if (serviceRoleMapping) {
-  //     return serviceRoleMapping.providerServiceMapping.serviceID;
-  //   }
-
-  // }
 
 }
