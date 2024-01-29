@@ -40,7 +40,7 @@ import * as CryptoJS from 'crypto-js';
 export class LoginComponent implements OnInit {
 
   userName: any;
-  password: any;
+  abc: any;
   dynamictype = 'password';
   encryptedVar: any;
   key: any;
@@ -79,11 +79,11 @@ export class LoginComponent implements OnInit {
   public ngAfterViewInit(): void {
     this.elementRef.nativeElement.focus();
   } 
-  abc = "";
+ 
   login() {
-   let encryptPassword = this.encrypt(this.Key_IV, this.password)
+   let encryptPassword = this.encrypt(this.Key_IV, this.abc)
 
-    if(this.userName !=undefined && this.userName !=null && this.password !=undefined && this.password !=null)
+    if(this.userName !=undefined && this.userName !=null && this.abc !=undefined && this.abc !=null)
     {
     this.authService.login(this.userName.trim(), encryptPassword, false)
       .subscribe(res => {

@@ -38,7 +38,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class DataSyncLoginComponent implements OnInit, DoCheck {
   userName: string;
-  password: string;
+  abc: string;
 
   dynamictype = "password";
   dialogRef: any;
@@ -150,9 +150,9 @@ export class DataSyncLoginComponent implements OnInit, DoCheck {
   */
   dataSyncLogin() {
     this.showProgressBar = true;
-    let encriptPassword = this.encrypt(this.Key_IV, this.password)
+    let encriptPassword = this.encrypt(this.Key_IV, this.abc)
 
-    if (this.userName && this.password) {
+    if (this.userName && this.abc) {
       this.dataSyncService
         .dataSyncLogin(this.userName, encriptPassword, false)
         .subscribe(
