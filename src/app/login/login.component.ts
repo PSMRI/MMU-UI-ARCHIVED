@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
   public ngAfterViewInit(): void {
     this.elementRef.nativeElement.focus();
   } 
-
+  abc = "";
   login() {
    let encryptPassword = this.encrypt(this.Key_IV, this.password)
 
