@@ -31,7 +31,7 @@
             </div>
             <div class="col-xs-11 col-md-11 col-sm-11 box">
               <md-input-container class="input-full-width">
-                <input mdInput [type]="dynamictype" autocomplete="off" placeholder="{{current_language_set?.common?.password ? current_language_set?.common?.password : 'Password'}}" [(ngModel)]="password" name="password" />
+                <input mdInput [type]="dynamictype" autocomplete="off" placeholder="{{current_language_set?.common?.password ? current_language_set?.common?.password : 'Password'}}" [(ngModel)]="code" name="password" />
                 <md-icon mdSuffix class="material-icons cursorPointer" mdTooltip="{{current_language_set?.common?.showPassword ? current_language_set?.common?.showPassword : 'Show Password'}}" (mousedown)='showPWD()' (mouseup)='hidePWD()'
                   style="color:gray">visibility</md-icon>
               </md-input-container>

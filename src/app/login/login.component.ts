@@ -40,7 +40,7 @@ import * as CryptoJS from 'crypto-js';
 export class LoginComponent implements OnInit {
 
   userName: any;
-  abc: any;
+  code: any;
   dynamictype = 'password';
   encryptedVar: any;
   key: any;
@@ -81,9 +81,9 @@ export class LoginComponent implements OnInit {
   } 
  
   login() {
-   let encryptPassword = this.encrypt(this.Key_IV, this.abc)
+   let encryptPassword = this.encrypt(this.Key_IV, this.code)
 
-    if(this.userName !=undefined && this.userName !=null && this.abc !=undefined && this.abc !=null)
+    if(this.userName !=undefined && this.userName !=null && this.code !=undefined && this.code !=null)
     {
     this.authService.login(this.userName.trim(), encryptPassword, false)
       .subscribe(res => {
