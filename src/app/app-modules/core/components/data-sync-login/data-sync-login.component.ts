@@ -165,7 +165,7 @@ export class DataSyncLoginComponent implements OnInit, DoCheck {
                 if (
                   mmuService !== undefined &&
                   mmuService !== null &&
-                  mmuService.length > 0-
+                  mmuService.length > 0
                 ) {
                   this.showProgressBar = false;
                   localStorage.setItem("serverKey", res.data.key);
