@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- @Author : Sunil K Sundaram @Date : 21-May-17 @Email : sunil.ks@gmail.com -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iemr.mmuui</groupId>
 	<artifactId>MMU-ui</artifactId>
@@ -54,8 +53,14 @@
 				<environment>test</environment>
 			</properties>
 		</profile>
+    <profile>
+      <id>ci</id>
+      <properties>
+        <environment>ci</environment>
+      </properties>
+    </profile>
 	</profiles>
-	
+
 	<!-- we could create individual properties similar to variables -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,14 +77,14 @@
 		<server-hostname>{hostname-${environment}}</server-hostname>
 		<server-port>{port-${environment}}</server-port>
 	</properties>
-	
+
 	<!-- install the necessary node_modules & compile in prod mode -->
 	<build>
 		<finalName>mmuui-v1.0</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.3.2</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -95,40 +100,31 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.6.0</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
-						<id>running npm install</id>
+						<id>npm-install</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<tasks>
-								<echo>running npm install ---> ${build.timestamp}</echo>
-								<echo>exec-dir: ${project.build.directory}</echo>
-							</tasks>
 							<executable>npm</executable>
 							<arguments>
 								<argument>install</argument>
 								<!-- use save-dev or save if you understand the consequences, else -->
-								<!-- please leave them alone & add appropriate npm dependencies in 
+								<!-- please leave them alone & add appropriate npm dependencies in
 									package.json -->
 							</arguments>
 						</configuration>
 					</execution>
 					<execution>
-						<id>running ng build --${environment}</id>
+						<id>ng-build</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<tasks>
-								<echo>running ng build --${environment} ---> ${build.timestamp}</echo>
-								<echo>exec-dir: ${project.build.directory}</echo>
-								<echo>dist-dir: ${project.build.outputDirectory}</echo>
-							</tasks>
 							<!-- incase working dir is different use below -->
 							<executable>npm</executable>
 							<arguments>
@@ -137,13 +133,13 @@
 							</arguments>
 						</configuration>
 					</execution>
-				</executions> 
+				</executions>
 			</plugin>
 			<!-- use following incase resources from other dirs -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.4.2</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>default-copy-resources</id>
@@ -163,7 +159,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.4.0</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
@@ -171,9 +167,9 @@
 							<!-- this is relative to the pom.xml directory -->
 							<directory>dist</directory>
 						</resource>
-						<resource>		
-							<filtering>true</filtering>					
-							<directory>src/packaging/</directory>							
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/packaging/</directory>
 						</resource>
 					</webResources>
 				</configuration>
@@ -181,10 +177,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
-						<id>properties-updated 1</id>
+						<id>properties-updated</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>run</goal>

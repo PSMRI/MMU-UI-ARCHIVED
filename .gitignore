@@ -49,10 +49,7 @@ Thumbs.db
 
 #other
 debug.log
-2.4.2
 karmareport.txt
-npm-debug.log.2922497857
-report.20200401.074014.475604.0.001.json
-report.20200401.125746.640356.0.001.json
-report.20200401.141947.639364.0.001.json
-report.20200401.202338.711224.0.001.json
+npm-debug.log*
+src/environments/environment.local.ts
+src/environments/environment.ci.ts
